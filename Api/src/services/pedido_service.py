@@ -114,6 +114,7 @@ class PedidoService:
         # Processa os itens do pedido
         if 'itens' in pedido_data and pedido_data['itens']:
             total = 0.0
+            itens_para_salvar = []
             for item_data in pedido_data['itens']:
                 self._validar_dados_item_pedido(item_data)
                 
@@ -123,7 +124,7 @@ class PedidoService:
                     raise ValueError(f"Produto {item_data['produto_id']} não encontrado")
                 
                 if produto.estoque < item_data['quantidade']:
-                    raise ValueError(f"Estoque insuficiente para o produto {produto.nome}")
+                    raise ValueError(f"Estoque insuficiente para o produto {produto.nome}. Disponível: {produto.estoque}, Solicitado: {item_data['quantidade']}")
                 
                 # Usa o preço atual do produto se não fornecido
                 preco_unitario = item_data.get('preco_unitario', produto.preco)
@@ -135,11 +136,17 @@ class PedidoService:
                     quantidade=item_data['quantidade'],
                     preco_unitario=preco_unitario
                 )
+                itens_para_salvar.append(item)
                 
-                pedido.itens.append(item)
+                # Decrementa o estoque do produto
+                produto_atualizado = produto.to_dict()
+                produto_atualizado['estoque'] = produto.estoque - item_data['quantidade']
+                self.produto_service.salvar(produto_atualizado) # Salva a atualização do estoque
+                
                 total += item.quantidade * item.preco_unitario
             
             pedido.total = total
+            pedido.itens = itens_para_salvar # Associa os itens ao pedido
         
         return self.pedido_repository.save(pedido)
     
@@ -184,6 +191,18 @@ class PedidoService:
         if not isinstance(pedido_id, int) or pedido_id <= 0:
             raise ValueError("ID do pedido deve ser um número positivo")
         
+        pedido = self.pedido_repository.find_by_id(pedido_id)
+        if not pedido:
+            return False
+
+        # Restaura o estoque dos produtos antes de deletar o pedido
+        for item in pedido.itens:
+            produto = self.produto_service.buscar_por_id(item.produto_id)
+            if produto:
+                produto_atualizado = produto.to_dict()
+                produto_atualizado['estoque'] = produto.estoque + item.quantidade
+                self.produto_service.salvar(produto_atualizado)
+
         return self.pedido_repository.delete_by_id(pedido_id)
     
     def contar_pedidos(self) -> int:
