@@ -199,4 +199,3 @@ Este projeto foi desenvolvido como parte de um desafio acadêmico, seguindo as m
 - Padrões de Design
 - Testes Automatizados
 - Documentação Técnica
-

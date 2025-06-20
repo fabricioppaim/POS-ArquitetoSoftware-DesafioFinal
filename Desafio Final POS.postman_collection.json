@@ -1,0 +1,656 @@
+{
+	"info": {
+		"_postman_id": "2bdcff8a-c4e6-43c0-8aa8-6f69c9811bf5",
+		"name": "Desafio Final POS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7519659"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Lista - /api/clientes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por ID - /api/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Nome - /api/clientes/nome/{nome}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes/nome/João",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes",
+								"nome",
+								"João"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conta os Clientes - /api/clientes/contar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes/contar",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes",
+								"contar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza por ID - /api/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva Atualizado\",\r\n    \"email\": \"joao.novo@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove por ID - /api/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva Atualizado\",\r\n    \"email\": \"joao.novo@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inclui - /api/clientes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva\",\r\n    \"email\": \"joao.silva@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/clientes",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Lista - /api/produtos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por ID - /api/produtos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Nome - /api/produtos/nome/{nome}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/nome/Notebook",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"nome",
+								"Notebook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conta os Clientes - /api/produtos/contar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/contar",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"contar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza por ID - /api/produtos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"descricao\": \"Notebook Dell Inspiron 15 Ultra\",\r\n        \"estoque\": 15,\r\n        \"id\": 1,\r\n        \"nome\": \"Notebook Dell SA\",\r\n        \"preco\": 2700.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove por ID - /api/produtos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva Atualizado\",\r\n    \"email\": \"joao.novo@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/2",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inclui - /api/produtos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"descricao\": \"Mouse sem fio Logitech MX Master\",\r\n        \"estoque\": 25,\r\n        \"nome\": \"Mouse Logitech\",\r\n        \"preco\": 350.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Lista - /api/pedidos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por ID - /api/pedidos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Nome - /api/produtos/nome/{nome}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/nome/Notebook",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"nome",
+								"Notebook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conta os Clientes - /api/produtos/contar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/contar",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"contar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza por ID - /api/produtos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"descricao\": \"Notebook Dell Inspiron 15 Ultra\",\r\n        \"estoque\": 15,\r\n        \"id\": 1,\r\n        \"nome\": \"Notebook Dell SA\",\r\n        \"preco\": 2700.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove por ID - /api/produtos/{id}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva Atualizado\",\r\n    \"email\": \"joao.novo@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos/2",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inclui - /api/produtos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"descricao\": \"Mouse sem fio Logitech MX Master\",\r\n        \"estoque\": 25,\r\n        \"nome\": \"Mouse Logitech\",\r\n        \"preco\": 350.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:5000/api/produtos",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{url}}:5000/api/health",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost",
+			"type": "string"
+		}
+	]
+}
