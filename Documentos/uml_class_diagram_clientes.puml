@@ -1,0 +1,50 @@
+```plantuml
+@startuml
+
+class Cliente {
+  + id: Long
+  + nome: String
+  + email: String
+  --
+  + Construtor()
+  + Getters & Setters
+}
+
+interface ClienteRepository {
+  + findAll(): List<Cliente>
+  + findById(id: Long): Optional<Cliente>
+  + findByNome(nome: String): List<Cliente>
+  + save(cliente: Cliente): Cliente
+  + deleteById(id: Long): void
+  + count(): Long
+}
+
+class ClienteService {
+  - clienteRepository: ClienteRepository
+  --
+  + listarTodos(): List<Cliente>
+  + buscarPorId(id: Long): Optional<Cliente>
+  + buscarPorNome(nome: String): List<Cliente>
+  + salvar(cliente: Cliente): Cliente
+  + deletar(id: Long): void
+  + contarClientes(): Long
+}
+
+class ClienteController {
+  - clienteService: ClienteService
+  --
+  + listarTodos(): List<Cliente>
+  + buscarPorId(id: Long): ResponseEntity<Cliente>
+  + buscarPorNome(nome: String): List<Cliente>
+  + contarClientes(): Long
+  + salvar(cliente: Cliente): Cliente
+  + deletar(id: Long): void
+}
+
+ClienteService ..> ClienteRepository : usa
+ClienteController ..> ClienteService : usa
+Cliente <|.. ClienteService
+
+@enduml
+```
+

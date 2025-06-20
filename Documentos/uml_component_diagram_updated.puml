@@ -1,0 +1,34 @@
+```plantuml
+@startuml
+
+component "ClienteController" as ClienteC
+component "ClienteService" as ClienteS
+component "ClienteRepository" as ClienteR
+
+component "ProdutoController" as ProdutoC
+component "ProdutoService" as ProdutoS
+component "ProdutoRepository" as ProdutoR
+
+component "PedidoController" as PedidoC
+component "PedidoService" as PedidoS
+component "PedidoRepository" as PedidoR
+
+component "Database" as DB
+
+ClienteC --> ClienteS : usa
+ClienteS --> ClienteR : usa
+ClienteR --> DB : acessa
+
+ProdutoC --> ProdutoS : usa
+ProdutoS --> ProdutoR : usa
+ProdutoR --> DB : acessa
+
+PedidoC --> PedidoS : usa
+PedidoS --> PedidoR : usa
+PedidoS --> ClienteS : usa
+PedidoS --> ProdutoS : usa
+PedidoR --> DB : acessa
+
+@enduml
+```
+

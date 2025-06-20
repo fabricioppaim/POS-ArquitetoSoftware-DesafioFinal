@@ -1,0 +1,70 @@
+```plantuml
+@startuml
+
+actor Cliente
+participant "PedidoController" as Controller
+participant "PedidoService" as Service
+participant "ProdutoService" as ProdService
+participant "PedidoRepository" as PedidoRepo
+participant "ProdutoRepository" as ProdRepo
+participant "Database" as DB
+
+Cliente -> Controller: POST /api/pedidos (dados do pedido)
+activate Controller
+
+Controller -> Service: salvar(pedido_data)
+activate Service
+
+Service -> Service: _validar_dados_pedido(pedido_data)
+Service -> Service: _validar_dados_item_pedido(item_data) (para cada item)
+
+loop para cada item no pedido
+    Service -> ProdService: buscarPorId(produto_id)
+    activate ProdService
+    ProdService -> ProdRepo: findById(produto_id)
+    activate ProdRepo
+    ProdRepo -> DB: SELECT * FROM produtos WHERE id = produto_id
+    activate DB
+    DB --> ProdRepo: Produto
+    deactivate DB
+    ProdRepo --> ProdService: Produto
+    deactivate ProdService
+    Service <-- ProdService: Produto
+    
+    Service -> Service: Verificar estoque e preço
+    
+    Service -> ProdService: salvar(produto_atualizado) (decrementa estoque)
+    activate ProdService
+    ProdService -> ProdRepo: save(produto_atualizado)
+    activate ProdRepo
+    ProdRepo -> DB: UPDATE produtos SET estoque = ... WHERE id = produto_id
+    activate DB
+    DB --> ProdRepo: Sucesso
+    deactivate DB
+    ProdRepo --> ProdService: Produto atualizado
+    deactivate ProdService
+    Service <-- ProdService: Produto atualizado
+end
+
+Service -> PedidoRepo: save(pedido)
+activate PedidoRepo
+PedidoRepo -> DB: INSERT INTO pedidos (...) VALUES (...)
+activate DB
+DB --> PedidoRepo: Pedido salvo (com ID)
+deactivate DB
+PedidoRepo -> DB: INSERT INTO itens_pedido (...) VALUES (...) (para cada item)
+activate DB
+DB --> PedidoRepo: Itens salvos
+deactivate DB
+PedidoRepo --> Service: Pedido salvo
+deactivate PedidoRepo
+
+Service --> Controller: Pedido salvo
+deactivate Service
+
+Controller --> Cliente: 201 Created (Pedido salvo)
+deactivate Controller
+
+@enduml
+```
+

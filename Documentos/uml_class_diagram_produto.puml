@@ -1,0 +1,48 @@
+```plantuml
+@startuml
+
+class Produto {
+  id: Long
+  nome: String
+  descricao: String
+  preco: Float
+  estoque: Integer
+  + Construtor()
+  + Getters e Setters
+}
+
+interface ProdutoRepository {
+  + findAll(): List<Produto>
+  + findById(id: Long): Optional<Produto>
+  + findByNome(nome: String): List<Produto>
+  + save(produto: Produto): Produto
+  + deleteById(id: Long): void
+  + count(): Long
+}
+
+class ProdutoService {
+  - produtoRepository: ProdutoRepository
+  + listarTodos(): List<Produto>
+  + buscarPorId(id: Long): Optional<Produto>
+  + buscarPorNome(nome: String): List<Produto>
+  + salvar(produto: Produto): Produto
+  + deletar(id: Long): void
+  + contarProdutos(): Long
+}
+
+class ProdutoController {
+  - produtoService: ProdutoService
+  + listarTodos(): List<Produto>
+  + buscarPorId(id: Long): ResponseEntity<Produto>
+  + buscarPorNome(nome: String): List<Produto>
+  + contarProdutos(): Long
+  + salvar(produto: Produto): Produto
+  + deletar(id: Long): void
+}
+
+ProdutoService ..> ProdutoRepository : usa
+ProdutoController ..> ProdutoService : usa
+
+@enduml
+```
+

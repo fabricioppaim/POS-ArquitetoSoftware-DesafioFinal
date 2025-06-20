@@ -1,0 +1,48 @@
+```plantuml
+@startuml
+
+actor User
+participant ClienteController
+participant ClienteService
+participant ClienteRepository
+participant Database
+
+User -> ClienteController : POST /clientes (cliente_data)
+ClienteController -> ClienteService : salvar(cliente_data)
+ClienteService -> ClienteRepository : save(cliente_data)
+ClienteRepository -> Database : INSERT INTO clientes (cliente_data)
+Database --> ClienteRepository : cliente_salvo
+ClienteRepository --> ClienteService : cliente_salvo
+ClienteService --> ClienteController : cliente_salvo
+ClienteController --> User : 201 Created (cliente_salvo)
+
+User -> ClienteController : GET /clientes/{id}
+ClienteController -> ClienteService : buscarPorId(id)
+ClienteService -> ClienteRepository : findById(id)
+ClienteRepository -> Database : SELECT * FROM clientes WHERE id = {id}
+Database --> ClienteRepository : cliente_encontrado
+ClienteRepository --> ClienteService : cliente_encontrado
+ClienteService --> ClienteController : cliente_encontrado
+ClienteController --> User : 200 OK (cliente_encontrado)
+
+User -> ClienteController : PUT /clientes/{id} (cliente_data_atualizada)
+ClienteController -> ClienteService : salvar(cliente_data_atualizada)
+ClienteService -> ClienteRepository : save(cliente_data_atualizada)
+ClienteRepository -> Database : UPDATE clientes SET ... WHERE id = {id}
+Database --> ClienteRepository : cliente_atualizado
+ClienteRepository --> ClienteService : cliente_atualizado
+ClienteService --> ClienteController : cliente_atualizado
+ClienteController --> User : 200 OK (cliente_atualizado)
+
+User -> ClienteController : DELETE /clientes/{id}
+ClienteController -> ClienteService : deletar(id)
+ClienteService -> ClienteRepository : deleteById(id)
+ClienteRepository -> Database : DELETE FROM clientes WHERE id = {id}
+Database --> ClienteRepository : sucesso
+ClienteRepository --> ClienteService : sucesso
+ClienteService --> ClienteController : sucesso
+ClienteController --> User : 204 No Content
+
+@enduml
+```
+

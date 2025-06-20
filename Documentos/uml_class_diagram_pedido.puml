@@ -1,0 +1,77 @@
+```plantuml
+@startuml
+
+class Pedido {
+  id: Long
+  cliente_id: Long
+  data_pedido: Date
+  status: String
+  total: Float
+  + Construtor()
+  + Getters e Setters
+}
+
+class ItemPedido {
+  id: Long
+  pedido_id: Long
+  produto_id: Long
+  quantidade: Integer
+  preco_unitario: Float
+  + Construtor()
+  + Getters e Setters
+}
+
+class Produto {
+  id: Long
+  nome: String
+  descricao: String
+  preco: Float
+  estoque: Integer
+  + Construtor()
+  + Getters e Setters
+}
+
+interface PedidoRepository {
+  + findAll(): List<Pedido>
+  + findById(id: Long): Optional<Pedido>
+  + findByClienteId(cliente_id: Long): List<Pedido>
+  + save(pedido: Pedido): Pedido
+  + deleteById(id: Long): void
+  + count(): Long
+}
+
+class PedidoService {
+  - pedidoRepository: PedidoRepository
+  - clienteService: ClienteService
+  - produtoService: ProdutoService
+  + listarTodos(): List<Pedido>
+  + buscarPorId(id: Long): Optional<Pedido>
+  + buscarPorClienteId(cliente_id: Long): List<Pedido>
+  + salvar(pedido: Pedido): Pedido
+  + atualizarStatus(id: Long, status: String): Pedido
+  + deletar(id: Long): void
+  + contarPedidos(): Long
+}
+
+class PedidoController {
+  - pedidoService: PedidoService
+  + listarTodos(): List<Pedido>
+  + buscarPorId(id: Long): ResponseEntity<Pedido>
+  + buscarPorClienteId(cliente_id: Long): List<Pedido>
+  + contarPedidos(): Long
+  + criarPedido(data: Map): Pedido
+  + atualizarStatusPedido(id: Long, data: Map): Pedido
+  + deletarPedido(id: Long): void
+}
+
+Pedido "1" o-- "*" ItemPedido : contém
+ItemPedido --> Produto : referencia
+
+PedidoService ..> PedidoRepository : usa
+PedidoService ..> ClienteService : usa
+PedidoService ..> ProdutoService : usa
+PedidoController ..> PedidoService : usa
+
+@enduml
+```
+
